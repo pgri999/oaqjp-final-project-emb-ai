@@ -18,14 +18,16 @@ def sent_analyzer():
 
     #we run the emotion_detector
     answer_dic=emotion_detector(text_to_analyze)
-    
+
     #we extract the keys and values of the answer (dictionnary)
     keys = list(answer_dic.keys())
     values = list(answer_dic.values())
 
+    if values[5] is None:
+        return '<b> Invalid text! Please try again!</b>'
+
     return (
-        f"For the given statement, the system response is "
-        f"'{keys[0]}' : {values[0]}, '{keys[1]}': {values[1]}, "
+        f"For the given statement, the system response is '{keys[0]}' : {values[0]}, '{keys[1]}': {values[1]}, "
         f"'{keys[2]}': {values[2]}, '{keys[3]}': {values[3]} and '{keys[4]}': {values[4]}. "
         f"The dominant emotion is <b>{values[5]}</b>."
     )
